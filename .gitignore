@@ -1,25 +1,19 @@
-# Virtual environment files
+#Idea files
+*.idea/
+.idea/*
+
+#Venv files
 *venv/
 venv/*
 
-# Pycharm files
+#Cached files
 *.pyc
-*.idea
-.idea/
-*.pfx
-*.crt
-*.xml
+*__pycache__
 
-# Webservice descriptions
-schemasv02/
+#Static files
+*static/
+static/*
 
-# Used certificates and keys
-certfiles/*
-tests/*
-
-# pyxb files
-Bindings/*
-
+#Sample files
+*samples/
 samples/*
-dist/*
-nfse_python.egg-info/*

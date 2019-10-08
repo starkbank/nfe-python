@@ -1,9 +1,9 @@
 ## Description
-Lib created in order to sign XML content for SOAP Envelops when a signed XML is required. 
-This library is intended to use with WebServices that requires certificate signatures values amongst the xml body.
-Pure Python coded. It's features are extracting .CERT or .PEM files and PrivateKeys to add values 
+Lib created in order to sign XML content for SOAP Envelops when a signature is required. 
+This library is intended to be used within WebServices that require certificate signature values inside the XML body.
+Pure Python coded. Its features consist in extracting .CERT or .PEM files and PrivateKeys to add values 
 on Signatures elements as ***SignatureValue*** and ***X509Certificate*** with ***rsa-sha1*** encryption type,
-compliance with http://www.w3.org/2000/09/xmldsig. 
+compliant with http://www.w3.org/2000/09/xmldsig. 
 Sign a XML file or buffered string using A1 or A3 certificate, PKCS1_v1_5 supported by RFC3447. 
 It serializes the data to request SOAP RPC services. Creates POST requests on WebServices as NFe and NFSe.
 
@@ -80,59 +80,84 @@ pip --version
 ---
 ## Usage
 
-### Using this lib to sign a xml file:
-
-#### How to extract certificate files:
+### Using this lib:
+##### We can create a new RPS, Consult Nfes and Cancel Nfes
 ```python
-from xmlsigner.signerXml import SignCert
+# coding: utf-8
+from gateways.saopaulo import SaopauloGateway
 
-certificateFile = "./certfiles/converted.crt"
-privateKeyRSA = "./certfiles/privRSAkey.pem"
-privateKeyFile = "./certfiles/RSAPrivateKey.pem"
+certificateContent=open("../static/certificate.crt", "rb").read()
+privateKeyContent = open("./static/rsaKey.pem").read()
 
-objSignCert = SignCert(
-    privateKeyContent=open(privateKeyRSA).read(),
-    certificateContent=open(certificateFile).read(),
-    rsaKeyContent=open(privateKeyRSA).read()
-)
+###Create Nfe:
 
-objSignCert.loadPem()
-certContent = objSignCert.loadCert()
-print(certContent)
-keyContent = objSignCert.loadPem()
-print(keyContent)
-```
+nfe = {
+    "senderTaxId": "63841121000180",
+    "inscricaoPrestador":  "98412100",
+    "serieRps": "TESTE",
+    "numeroRps": "9117092019",
+    "tipoRps": "RPS",
+    "dataEmissao": "2019-07-09",
+    "statusRps": "N",
+    "tributacaoRps": "T",
+    "issRetido": "false",
+    "valorServicos": "1",
+    "valorDeducoes": "0",
+    "valorPis": "0",
+    "valorIr": "0",
+    "valorCsll": "0",
+    "valorCofins": "0",
+    "valorInss": "0",
+    "codigoServico": "05895",
+    "aliquotaServicos": "2",
+    "receiverTaxId": "30134945000167",
+    "receiverName": "HUMMINGBIRD HEALTH PRODUCTS",
+    "receiverStreetLine1": "Null",
+    "receiverStreetNumber": "123",
+    "receiverStreetLine2": "Null",
+    "receiverDistrict": "Null",
+    "receiverCity": "3550308",
+    "receiverState": "SP",
+    "receiverZipCode": "00000000",
+    "receiverEmail": "none@none",
+    "description": "Teste de emissao de NFS-e de boletos prestados",
+}
 
-#### How to sign a new xml:
-```python
-xmlEnvelope = "file.xml"
-with open(xmlEnvelope, 'rb') as xmlEnvelope:
-    xmlData = xmlEnvelope.read()
+print(SaopauloGateway.sendRps(
+    privateKeyContent=privateKeyContent,
+    certificateContent=certificateContent,
+    **nfe
+    ))
 
-# Simply sign with extended A1 certificate
-xmlEnvelope = etree.fromstring(xmlData)
-signedRoot = objSignCert.signA1Cert(xmlEnvelope)
-print signedRoot
-```
+###How to delete a Nfe:
 
+nota = {
+    "senderTaxId": "20018183000180",
+    "inscricaoPrestador": "57038597",
+    "nfeNumber": "296"
+}
 
-#### How to verify the signed xml file
-```python
-objSignCert.verifySignature(signedRoot)
-```
+print(SaopauloGateway.cancelRps(
+    privateKeyContent=privateKeyContent,
+    certificateContent=certificateContent,
+    **nota
+    ))
 
-#### How to perform POST method using a signed xml:
-```python
-# Sign and post a xml example:
-objServ = Services(
-    privateKeyContent=open(privateKeyRSA).read(),
-    certificateContent=open(certificateFile).read(),
-    rsaKeyContent=open(privateKeyRSA).read()
-)
-taxId = "12345678000198"
-taxPayerId = "12345678000198"
-result = objServ.consultTaxIdSubscription(taxId=taxId, taxPayerId=taxPayerId)
-print(result)
+###Consult sent Nfes
+
+parameters = {
+    "senderTaxId": "20018183000180",
+    "inscricaoPrestador": "57038597",
+    "dtInicio": "2019-09-15",
+    "dtFim": "2019-09-18",
+}
+
+print(SaopauloGateway.consultNfes(
+    privateKeyContent=privateKeyContent,
+    certificateContent=certificateContent,
+    **parameters
+))
+
 ```
 
 ---
