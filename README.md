@@ -1,4 +1,5 @@
 ## Description
+
 Lib created in order to sign XML content for SOAP Envelops when a signature is required. 
 This library is intended to be used within WebServices that require certificate signature values inside the XML body.
 Pure Python coded. Its features consist in extracting .CERT or .PEM files and PrivateKeys to add values 
@@ -59,8 +60,8 @@ python setup.py install
 # coding: utf-8
 from gateways.saopaulo import SaopauloGateway
 
-certificateContent=open("../static/certificate.crt", "rb").read()
-privateKeyContent = open("./static/rsaKey.pem").read()
+certificateContent = open("./certificate.crt", "rb").read()
+privateKeyContent = open("./rsaKey.pem").read()
 
 ###Create Nfe:
 
@@ -100,7 +101,7 @@ print(SaopauloGateway.sendRps(
     privateKeyContent=privateKeyContent,
     certificateContent=certificateContent,
     **nota
-    ))
+))
 
 ###How to delete a Nfe:
 
@@ -114,7 +115,7 @@ print(SaopauloGateway.cancelRps(
     privateKeyContent=privateKeyContent,
     certificateContent=certificateContent,
     **nota
-    ))
+))
 
 ###Consult sent Nfes
 

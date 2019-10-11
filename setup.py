@@ -18,5 +18,24 @@ setup(
     author="Stark Bank",
     author_email="developers@starkbank.com",
     keywords=["nfe", "nfse", "xml", "xml signer", "stark bank", "starkbank"],
+    install_requires=[
+        "lxml==4.4.1"
+        "pycrypto==2.6.1"
+        "requests==2.22.0"
+        "rsa==4.0"
+        "urllib3==1.25.3"
+    ],
     version="0.1.0",
 )
+
+### Create a source distribution:
+
+#Run ```python setup.py sdist``` inside the project directory.
+
+### Install twine:
+
+#```pip install twine```
+
+### Upload package to pypi:
+
+#```twine upload dist/*```

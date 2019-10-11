@@ -1,6 +1,6 @@
 from lxml import etree
 from re import search
-from utils.compatibility import xmlFromString
+from .compatibility import xmlFromString
 
 
 class Response:

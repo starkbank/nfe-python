@@ -1,6 +1,6 @@
-from utils.rps import Rps
-from utils.response import Response
-from utils.schemas import schemaCreateRps, schemaCancelRps, schemaConsultNfes
+from ..utils.rps import Rps
+from ..utils.response import Response
+from ..utils.schemas import schemaCreateRps, schemaCancelRps, schemaConsultNfes
 from requests import post
 
 
