@@ -65,35 +65,35 @@ privateKeyContent = open("./static/rsaKey.pem").read()
 ###Create Nfe:
 
 nota = {
-    "senderTaxId": "01234567890123",
-    "subscription": "01234567",
-    "rpsSeries": "TESTE",
-    "rpsNumber": "9117092019",
-    "rpsType": "RPS",
-    "issueDate": "2019-07-09",
-    "statusRps": "N",
-    "rpsTax": "T",
-    "issRetain": "false",
-    "serviceAmount": "1",
-    "deductionAmount": "0",
-    "pisAmount": "0",
-    "irAmount": "0",
-    "csllAmount": "0",
-    "cofinsAmount": "0",
-    "inssAmount": "0",
-    "serviceCode": "05895",
-    "aliquot": "2",
-    "receiverTaxId": "32109876543210",
-    "receiverName": "SOME COMPANY NAME",
-    "receiverStreetLine1": "Null",
-    "receiverStreetNumber": "123",
-    "receiverStreetLine2": "Null",
-    "receiverDistrict": "Null",
-    "receiverCity": "3550308",
-    "receiverState": "SP",
-    "receiverZipCode": "00000000",
-    "receiverEmail": "none@none",
-    "description": "Teste de emissao de NFS-e de boletos prestados",
+    "CPFCNPJRemetente": "01234567890987",
+    "InscricaoPrestador":  "01234567",
+    "SerieRPS": "TESTE",
+    "NumeroRPS": "9117092019",
+    "TipoRPS": "RPS",
+    "DataEmissao": "2019-07-09",
+    "StatusRPS": "N",
+    "TributacaoRPS": "T",
+    "ValorServicos": "1",
+    "ValorDeducoes": "0",
+    "ValorPIS": "0",
+    "ValorIR": "0",
+    "ValorCSLL": "0",
+    "ValorCOFINS": "0",
+    "ValorINSS": "0",
+    "CodigoServico": "05895",
+    "AliquotaServicos": "2",
+    "ISSRetido": "false",
+    "CPFCNPJTomador": "01234567654321",
+    "RazaoSocialTomador": "SOME COMPANY NAME",
+    "Logradouro": "Rua Um",
+    "NumeroEndereco": "123",
+    "ComplementoEndereco": "Centro",
+    "Bairro": "Vila Unica",
+    "Cidade": "3550308",
+    "UF": "SP",
+    "CEP": "00000000",
+    "EmailTomador": "none@none.com",
+    "Discriminacao": "Teste de emissao de NFS-e de boletos prestados",
 }
 
 print(SaopauloGateway.sendRps(
@@ -105,9 +105,9 @@ print(SaopauloGateway.sendRps(
 ###How to delete a Nfe:
 
 nota = {
-    "senderTaxId": "01234567890123",
-    "subscription": "01234567",
-    "nfeNumber": "001"
+    "CPFCNPJRemetente": "01234567890123",
+    "InscricaoPrestador": "01234567",
+    "NumeroNFe": "001"
 }
 
 print(SaopauloGateway.cancelRps(
@@ -119,8 +119,8 @@ print(SaopauloGateway.cancelRps(
 ###Consult sent Nfes
 
 parameters = {
-    "senderTaxId": "01234567890123",
-    "subscription": "01234567",
+    "CPFCNPJRemetente": "01234567890123",
+    "InscricaoPrestador": "01234567",
     "dtInicio": "2019-09-15",
     "dtFim": "2019-09-18",
 }
