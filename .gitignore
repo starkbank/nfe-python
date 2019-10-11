@@ -1,0 +1,26 @@
+#Idea files
+*.idea/
+.idea/*
+
+#Venv files
+*venv/
+venv/*
+
+#Cached files
+*.pyc
+*__pycache__
+*.pypirc
+
+#Static files
+*static/
+static/*
+
+#Sample files
+*samples/
+samples/*
+
+#Dist files
+*.egg-info/
+*dist/
+*build/
+nfe-library
