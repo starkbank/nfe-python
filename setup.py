@@ -1,22 +1,22 @@
-import setuptools
+from os import path
+from setuptools import setup, find_packages
 
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
-    setuptools.setup(
-        name="nfse-library",
-        version="1.0",
-        scripts=['nfe-library'],
-        author="Vitor Sgobbi",
-        author_email="vitor.gabriel@starkbank.com",
-        description="Python xml signer and webservice requester",
-        long_description=long_description,
-        long_description_content_type="text/markdown",
-        url="https://github.com/vsgobbi/nfe-library",
-        packages=setuptools.find_packages(),
-        classifiers=[
-            "Programming Language :: Python :: 2.7",
-            "License :: OSI Approved :: MIT License",
-            "Operating System :: OS Independent",
-        ],
-    )
+with open(path.join(path.dirname(__file__), "README.md")) as readme:
+    README = readme.read()
+
+
+setup(
+    name="starkbank-nfe",
+    packages=find_packages(),
+    include_package_data=True,
+    description="Python xml signer and webservice requester",
+    long_description=README,
+    long_description_content_type="text/markdown",
+    license="MIT License",
+    url="https://github.com/starkbank/nfe",
+    author="Stark Bank",
+    author_email="developers@starkbank.com",
+    keywords=["nfe", "nfse", "xml", "xml signer", "stark bank", "starkbank"],
+    version="0.1.0",
+)

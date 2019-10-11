@@ -9,7 +9,7 @@ class Rsa:
 
     @classmethod
     def sign(cls, text, privateKeyContent):
-        digest = SHA.new(text)
+        digest = SHA.new(text.encode("utf8"))
         rsaKey = RSA.importKey(privateKeyContent)
         signer = PKCS1_v1_5.new(rsaKey)
         signature = signer.sign(digest)

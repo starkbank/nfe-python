@@ -19,69 +19,42 @@ It serializes the data to request SOAP RPC services. Creates POST requests on We
 
 
 
-<a href="https://gnu.org"><img src="https://www.gnu.org/graphics/gplv3-127x51.png" title="FVCproductions" alt="GPL"></a>
 
 <!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
 [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger) 
+[![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
 ---
 
 
 ## Installation
 
-### Clone
-
-### CLONE PROJECT
-- Firstly, clone this repo to your local machine
+### Pip install 
+- Firstly, install library with pip:
 
 ```shell
-git clone https://github.com/starkbank/nfe.git
+pip install starkbank-nfe
 ```
 ---
-### INSTALL PACKAGE
-```shell     
+- Or clone this repo and install library:
+
+```shell   
+git clone https://github.com/starkbank/nfe
 python setup.py install
-``` 
-
-### INSTALL REQUIRED LIBS
-
-- Install main libs
-```shell     
-pip install -r requirements.txt
 ``` 
 
 ## Features
 > Using the following libs: 
 - lxml, pyCrypto, requests, ssl, rsa
 
----
-
-
-## Setup
-
-### CREATE VENV
-
-- Create virtualenv using Python2.7
-```shell     
-virtualenv -p python2.7 venv
-```
-- Activate the virtualenv
-```shell     
-source venv/bin/activate
-```
-- Verify if version is correct
-```shell     
-python --version #expected return: Python2.7
-pip --version
-```
 
 ---
 ## Usage
 
 ### Using this lib:
-##### We can create a new RPS, Consult Nfes and Cancel Nfes
+##### We can create a new Rps, Consult Nfes and Cancel Nfes
 ```python
 # coding: utf-8
 from gateways.saopaulo import SaopauloGateway
@@ -181,13 +154,12 @@ print(SaopauloGateway.consultNfes(
 
 Reach out to me at one of the following places!
 
-- E-mail at <a href="mailto:" target="_blank">`vitor.gabriel@starkbank.com`</a>
-- Github at <a href="https://www.github.com/vsgobbi" target="_blank">`@vsgobbi`</a>
+- E-mail at <a href="mailto:" target="_blank">`developers@starkbank.com`</a>
+- Github at <a href="https://www.github.com/starkbank" target="_blank">`@starkbank`</a>
 
 ---
 
 ## License
 
- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-- **[GPL license](https://www.gnu.org/licenses/gpl-3.0)**
-- Copyright 2019 © <a href="https://github.com/vsgobbi" target="_blank">Vitor Gabriel Sgobbi</a>.
+[![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
+- Copyright 2019 © <a href="https://github.com/starkbank" target="_blank">STARK BANK S.A.</a>

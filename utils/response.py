@@ -1,5 +1,6 @@
 from lxml import etree
 from re import search
+from utils.compatibility import xmlFromString
 
 
 class Response:
@@ -8,10 +9,10 @@ class Response:
     def resultDict(cls, strResult):
         responseGroup = search("\<RetornoXML>(.*)\</Retorno", strResult).group(1)
         res = {}
-        root = etree.fromstring(responseGroup)
+        root = xmlFromString(responseGroup)
         for i in root.iter():
             text = i.text
-            text = text.encode("utf-8", "replace") if text else None
+            text = text.encode("utf-8") if text else None
             if text:
                 res.setdefault("{tag}".format(tag=i.tag), "{text}".format(text=text))
         return res
