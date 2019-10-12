@@ -1,6 +1,6 @@
 from lxml import etree
 from re import search
-from .compatibility import xmlFromString
+from .compatibility import xmlFromString, getXmlText
 
 
 class Response:
@@ -10,11 +10,10 @@ class Response:
         responseGroup = search("\<RetornoXML>(.*)\</Retorno", strResult).group(1)
         res = {}
         root = xmlFromString(responseGroup)
-        for i in root.iter():
-            text = i.text
-            text = text.encode("utf-8") if text else None
+        for element in root.iter():
+            text = getXmlText(element)
             if text:
-                res.setdefault("{tag}".format(tag=i.tag), "{text}".format(text=text))
+                res.setdefault("{tag}".format(tag=element.tag), "{text}".format(text=text))
         return res
 
     @classmethod
