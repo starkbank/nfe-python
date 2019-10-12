@@ -72,8 +72,8 @@ class Rps:
 
     @classmethod
     def cancelRps(cls, xml, CPFCNPJRemetente, InscricaoPrestador, NumeroNFe, certificateContent, privateKeyContent):
-        cancelToSign = "{CPFCNPJRemetente}{NumeroNFe}".format(
-            CPFCNPJRemetente=CPFCNPJRemetente.zfill(8),
+        cancelToSign = "{InscricaoPrestador}{NumeroNFe}".format(
+            InscricaoPrestador=InscricaoPrestador.zfill(8),
             NumeroNFe=NumeroNFe.zfill(12)
         )
 
