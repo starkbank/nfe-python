@@ -10,6 +10,12 @@ if version.major == 3:
     def getXmlText(element):
         return element.text
 
+    def stringDecode(string):
+        return string.decode("utf-8")
+
+    def stringEncode(string):
+        return string.encode("utf-8")
+
 if version.major == 2:
 
     def xmlFromString(string):
@@ -17,3 +23,9 @@ if version.major == 2:
 
     def getXmlText(element):
         return element.text.encode("utf-8") if element.text else None
+
+    def stringDecode(string):
+        return string
+
+    def stringEncode(string):
+        return str(string)

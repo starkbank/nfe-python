@@ -2,6 +2,7 @@ from re import search, sub
 from .rsa import Rsa
 from .currency import Currency
 from .certificate import Certificate
+from ..utils.compatibility import stringDecode
 
 
 class Rps:
@@ -28,9 +29,10 @@ class Rps:
         )
 
         rpsSignature = Rsa.sign(text=rpsToSign, privateKeyContent=privateKeyContent)
+
         parameters = {
             "CPFCNPJRemetente": CPFCNPJRemetente,
-            "Assinatura": rpsSignature.decode("utf-8"),
+            "Assinatura": stringDecode(rpsSignature),
             "InscricaoPrestador": InscricaoPrestador,
             "SerieRPS": SerieRPS,
             "NumeroRPS": NumeroRPS,
@@ -58,7 +60,7 @@ class Rps:
             "UF": UF,
             "CEP": CEP,
             "EmailTomador": EmailTomador,
-            "Discriminacao": Discriminacao
+            "Discriminacao": Discriminacao,
         }
 
         xml = cls.signXml(
@@ -83,7 +85,7 @@ class Rps:
             "CPFCNPJRemetente": CPFCNPJRemetente,
             "InscricaoPrestador": InscricaoPrestador,
             "NumeroNFe": NumeroNFe,
-            "AssinaturaCancelamento": cancelSignature.decode("utf8"),
+            "AssinaturaCancelamento": stringDecode(cancelSignature),
         }
 
         xml = cls.signXml(
@@ -123,16 +125,17 @@ class Rps:
 
         p1 = p1WithoutSignature.format(**kwargs)
 
-        digestValue = Rsa.digest(p1.encode("utf-8"))
+        digestValue = stringDecode(Rsa.digest(p1))
+
         namespace = search("<[^> ]+ ?([^>]*)>", p1WithoutSignature).group(1)
         signInfo = search("(<SignedInfo>.*</SignedInfo>)", xmlWithoutSpaces).group(1)
         signInfoWithNamespace = sub("<SignedInfo>", "<SignedInfo xmlns=\"http://www.w3.org/2000/09/xmldsig#\" {namespace}>".format(namespace=namespace), signInfo)
-        message = signInfoWithNamespace.format(DigestValue=digestValue.decode("utf-8"))
-        signatureValue = Rsa.sign(text=message, privateKeyContent=privateKeyContent)
+        message = signInfoWithNamespace.format(DigestValue=digestValue)
+        signatureValue = stringDecode(Rsa.sign(text=message, privateKeyContent=privateKeyContent))
 
         sigendXml = xmlWithoutSpaces.format(
-            DigestValue=digestValue.decode("utf-8"),
-            SignatureValue=signatureValue.decode("utf-8"),
+            DigestValue=digestValue,
+            SignatureValue=signatureValue,
             X509Certificate=Certificate.getContent(certificateContent),
             **kwargs
         )

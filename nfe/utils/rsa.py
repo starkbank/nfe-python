@@ -3,13 +3,14 @@ from hashlib import sha1
 from Crypto.Hash import SHA
 from Crypto.Signature import PKCS1_v1_5
 from Crypto.PublicKey import RSA
+from ..utils.compatibility import stringEncode
 
 
 class Rsa:
 
     @classmethod
     def sign(cls, text, privateKeyContent):
-        digest = SHA.new(text.encode("utf8"))
+        digest = SHA.new(stringEncode(text))
         rsaKey = RSA.importKey(privateKeyContent)
         signer = PKCS1_v1_5.new(rsaKey)
         signature = signer.sign(digest)
@@ -18,6 +19,6 @@ class Rsa:
     @classmethod
     def digest(cls, text):
         hasher = sha1()
-        hasher.update(text)
+        hasher.update(stringEncode(text))
         digest = hasher.digest()
         return b64encode(digest)
