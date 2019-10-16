@@ -13,7 +13,7 @@ class Response:
         for element in root.iter():
             text = getXmlText(element)
             if text:
-                res.setdefault("{tag}".format(tag=element.tag), "{text}".format(text=text))
+                res.setdefault("{tag}".format(tag=element.tag), "{text}".format(text=str(text)))
         return res
 
     @classmethod

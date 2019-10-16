@@ -1,6 +1,7 @@
 from ..utils.rps import Rps
 from ..utils.response import Response
 from ..utils.schemas import schemaCreateRps, schemaCancelRps, schemaConsultNfes
+from ..utils.compatibility import stringEncode, stringDecode
 from requests import post
 
 
@@ -56,9 +57,7 @@ class SaopauloGateway:
 
     @classmethod
     def clearedResponse(cls, response):
-        response.encoding = "utf-8"
-        xmlResponse = str(response.content)
-        xmlResponse = xmlResponse.replace("&lt;", "<")
+        xmlResponse = response.replace("&lt;", "<")
         xmlResponse = xmlResponse.replace("&gt;", ">")
         return xmlResponse
 
@@ -86,18 +85,20 @@ class SaopauloGateway:
 
         response = post(
             url="https://nfe.prefeitura.sp.gov.br/ws/lotenfe.asmx",
-            data=xml,
+            data=stringEncode(xml),
             headers=headers,
             cert=(certPath, keyPath),
-            verify=False
+            verify=True
         )
 
         status = response.status_code
+        content = stringDecode(response.content)
+
         if status != 200:
             return {}, status
 
         if method == "consult":
-            return Response.getTail(cls.clearedResponse(response)), status
+            return Response.getTail(cls.clearedResponse(content)), status
 
         if method == "rps":
-            return Response.resultDict(cls.clearedResponse(response)), status
+            return Response.resultDict(cls.clearedResponse(content)), status
