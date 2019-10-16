@@ -28,4 +28,4 @@ if version.major == 2:
         return string
 
     def stringEncode(string):
-        return str(string)
+        return string
