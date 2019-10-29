@@ -14,12 +14,13 @@ class Rps:
                      NumeroEndereco, ComplementoEndereco, Bairro, Cidade, UF, CEP, EmailTomador, Discriminacao,
                      privateKeyContent, certificateContent):
 
-        rpsToSign = "{InscricaoPrestador}{SerieRPS}{NumeroRPS}{DataEmissao}T{StatusRPS}" \
+        rpsToSign = "{InscricaoPrestador}{SerieRPS}{NumeroRPS}{DataEmissao}{TributacaoRPS}{StatusRPS}" \
                     "{ISSRetido}{ValorServicos}{ValorDeducoes}{CodigoServico}2{RazaoSocialTomador}".format(
             InscricaoPrestador=InscricaoPrestador.zfill(8),
             SerieRPS=SerieRPS.ljust(5).upper(),
             NumeroRPS=NumeroRPS.zfill(12),
             DataEmissao=DataEmissao.replace("-", ""),
+            TributacaoRPS=TributacaoRPS.upper(),
             StatusRPS=StatusRPS,
             ISSRetido={"false": "N", "true": "S"}.get(ISSRetido),
             ValorServicos=str(ValorServicos).zfill(15),
