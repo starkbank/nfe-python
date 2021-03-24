@@ -22,7 +22,7 @@ setup(
         "lxml==4.4.1",
         "pycrypto==2.6.1",
         "requests==2.22.0",
-        "rsa==4.0",
+        "rsa==4.1",
         "urllib3==1.25.3",
     ],
     version="0.1.5",
