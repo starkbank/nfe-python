@@ -23,7 +23,7 @@ setup(
         "pycrypto==2.6.1",
         "requests==2.22.0",
         "rsa==4.0",
-        "urllib3==1.25.3",
+        "urllib3==1.25.8",
     ],
     version="0.1.5",
 )
