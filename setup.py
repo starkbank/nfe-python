@@ -7,16 +7,16 @@ with open(path.join(path.dirname(__file__), "README.md")) as readme:
 
 
 setup(
-    name="starkbank-nfe",
+    name="bnsouza-nfe",
     packages=find_packages(),
     include_package_data=True,
     description="Python xml signer and webservice requester",
     long_description=README,
     long_description_content_type="text/markdown",
     license="MIT License",
-    url="https://github.com/starkbank/nfe",
-    author="Stark Bank",
-    author_email="developers@starkbank.com",
+    url="https://github.com/bnsouza/nfe-python",
+    author="Stark Bank / Bruno Souza",
+    author_email="bruno@komu.com.br",
     keywords=["nfe", "nfse", "xml", "xml signer", "stark bank", "starkbank"],
     install_requires=[
         "lxml==4.4.1",
@@ -25,7 +25,7 @@ setup(
         "rsa==4.0",
         "urllib3==1.25.3",
     ],
-    version="0.1.5",
+    version="0.1",
 )
 
 ### Create a source distribution:
