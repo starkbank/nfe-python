@@ -31,6 +31,10 @@ class Rps:
 
         rpsSignature = Rsa.sign(text=rpsToSign, privateKeyContent=privateKeyContent)
 
+        CPFCNPJTomadorTag = "CPF"
+        if len(CPFCNPJTomador) > 11:
+            CPFCNPJTomadorTag = "CNPJ"
+
         parameters = {
             "CPFCNPJRemetente": CPFCNPJRemetente,
             "Assinatura": stringDecode(rpsSignature),
@@ -52,6 +56,7 @@ class Rps:
             "AliquotaServicos": Currency.formatted(AliquotaServicos),
             "ISSRetido": ISSRetido,
             "CPFCNPJTomador": CPFCNPJTomador,
+            "CPFCNPJTomadorTag": CPFCNPJTomadorTag,
             "RazaoSocialTomador": RazaoSocialTomador,
             "Logradouro": Logradouro,
             "NumeroEndereco": NumeroEndereco,
