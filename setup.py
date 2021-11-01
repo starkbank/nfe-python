@@ -20,12 +20,12 @@ setup(
     keywords=["nfe", "nfse", "xml", "xml signer", "stark bank", "starkbank"],
     install_requires=[
         "lxml==4.4.1",
-        "pycrypto==2.6.1",
+        "pycryptodome==3.11.0",
         "requests==2.22.0",
         "rsa==4.0",
         "urllib3==1.25.3",
     ],
-    version="0.1",
+    version="0.2",
 )
 
 ### Create a source distribution:
