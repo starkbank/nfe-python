@@ -14,8 +14,12 @@ class Rps:
                      NumeroEndereco, ComplementoEndereco, Bairro, Cidade, UF, CEP, EmailTomador, Discriminacao,
                      privateKeyContent, certificateContent):
 
+        CPFCNPJTomadorTag = "CPF"
+        if len(CPFCNPJTomador) > 11:
+            CPFCNPJTomadorTag = "CNPJ"
+
         rpsToSign = "{InscricaoPrestador}{SerieRPS}{NumeroRPS}{DataEmissao}{TributacaoRPS}{StatusRPS}" \
-                    "{ISSRetido}{ValorServicos}{ValorDeducoes}{CodigoServico}2{RazaoSocialTomador}".format(
+                    "{ISSRetido}{ValorServicos}{ValorDeducoes}{CodigoServico}{CPFCNPJ}{RazaoSocialTomador}".format(
             InscricaoPrestador=InscricaoPrestador.zfill(8),
             SerieRPS=SerieRPS.ljust(5).upper(),
             NumeroRPS=NumeroRPS.zfill(12),
@@ -26,6 +30,7 @@ class Rps:
             ValorServicos=str(ValorServicos).zfill(15),
             ValorDeducoes=str(ValorDeducoes).zfill(15),
             CodigoServico=CodigoServico.zfill(5),
+            CPFCNPJ=("1" if CPFCNPJTomadorTag == "CPF" else "2"),
             RazaoSocialTomador=CPFCNPJTomador.zfill(14),
         )
 
@@ -52,6 +57,7 @@ class Rps:
             "AliquotaServicos": Currency.formatted(AliquotaServicos),
             "ISSRetido": ISSRetido,
             "CPFCNPJTomador": CPFCNPJTomador,
+            "CPFCNPJTomadorTag": CPFCNPJTomadorTag,
             "RazaoSocialTomador": RazaoSocialTomador,
             "Logradouro": Logradouro,
             "NumeroEndereco": NumeroEndereco,
