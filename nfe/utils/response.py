@@ -30,7 +30,7 @@ class Response:
                     "SerieRPS": i.find('.//SerieRPS', namespaces={}).text,
                     "NumeroRPS": i.find('.//NumeroRPS', namespaces={}).text,
                     "DataEmissaoNFe": i.find('.//DataEmissaoNFe', namespaces={}).text,
-                    "CPFCNPJTomador": i.find('.//CPFCNPJTomador/CNPJ', namespaces={}).text,
+                    "CPFCNPJTomador": i.find('.//CPFCNPJTomador', namespaces={})[0].text,
                     "CodigoVerificacao": i.find('.//CodigoVerificacao', namespaces={}).text,
                     "NumeroNFe": i.find('.//NumeroNFe', namespaces={}).text
                 })
