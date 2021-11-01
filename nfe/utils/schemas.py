@@ -34,7 +34,7 @@ schemaCreateRps = """
                             <AliquotaServicos>{AliquotaServicos}</AliquotaServicos>
                             <ISSRetido>{ISSRetido}</ISSRetido>
                             <CPFCNPJTomador>
-                                <CNPJ>{CPFCNPJTomador}</CNPJ>
+                                <{CPFCNPJTomadorTag}>{CPFCNPJTomador}</{CPFCNPJTomadorTag}>
                             </CPFCNPJTomador>
                             <RazaoSocialTomador>{RazaoSocialTomador}</RazaoSocialTomador>
                             <EnderecoTomador>
