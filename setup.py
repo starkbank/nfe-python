@@ -25,7 +25,7 @@ setup(
         "rsa==4.0",
         "urllib3==1.25.3",
     ],
-    version="0.2",
+    version="0.3",
 )
 
 ### Create a source distribution:
