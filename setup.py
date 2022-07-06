@@ -19,7 +19,7 @@ setup(
     author_email="developers@starkbank.com",
     keywords=["nfe", "nfse", "xml", "xml signer", "stark bank", "starkbank"],
     install_requires=[
-        "lxml==4.4.1",
+        "lxml==4.9.1",
         "pycrypto==2.6.1",
         "requests==2.22.0",
         "rsa==4.0",
